@@ -1,0 +1,127 @@
+import { AnimatedSection } from "./AnimatedSection";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, Folder } from "lucide-react";
+
+const projectsData = [
+  {
+    title: "Sahayak",
+    description: "A comprehensive Teaching Assistant Platform designed to streamline educational interactions between students and teachers.",
+    tags: ["React", "Node.js", "MongoDB", "Real-time"],
+    featured: true,
+    color: "from-primary/20 to-gold-dark/20",
+  },
+  {
+    title: "Expense Manager",
+    description: "Smart financial tracking application helping users manage their expenses with intuitive visualizations and insights.",
+    tags: ["React", "Firebase", "Charts", "PWA"],
+    featured: true,
+    color: "from-emerald-500/20 to-cyan-500/20",
+  },
+  {
+    title: "UI Clones",
+    description: "Pixel-perfect recreations of popular applications including Instagram and WhatsApp, showcasing frontend mastery.",
+    tags: ["React", "CSS", "Responsive", "Animations"],
+    featured: false,
+    color: "from-pink-500/20 to-orange-500/20",
+  },
+];
+
+export const ProjectsSection = () => {
+  return (
+    <section id="projects" className="py-32 relative">
+      <div className="section-container">
+        <AnimatedSection>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="line-accent" />
+            <span className="text-sm font-medium text-primary uppercase tracking-widest">Projects</span>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Featured <span className="text-gradient-gold">Work</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mb-16">
+            A collection of projects that demonstrate my expertise in full-stack development 
+            and passion for creating impactful digital solutions.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projectsData.map((project, index) => (
+            <AnimatedSection key={index} delay={index * 0.15}>
+              <motion.div
+                whileHover={{ y: -8 }}
+                className="group card-premium overflow-hidden h-full"
+              >
+                {/* Project Header with Gradient */}
+                <div className={`h-48 bg-gradient-to-br ${project.color} p-6 flex items-end`}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-background/80 backdrop-blur-sm flex items-center justify-center">
+                      <Folder className="w-6 h-6 text-primary" />
+                    </div>
+                    {project.featured && (
+                      <span className="px-3 py-1 bg-primary/20 backdrop-blur-sm text-primary text-xs font-medium rounded-full">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-6 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-2 py-1 bg-muted text-xs text-muted-foreground rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-border">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github className="w-5 h-5" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </motion.button>
+                    <span className="ml-auto text-xs text-muted-foreground">View Project →</span>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection delay={0.5}>
+          <div className="text-center mt-12">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 border border-border text-foreground font-medium rounded-full hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+            >
+              View All Projects
+            </motion.button>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
