@@ -1,8 +1,11 @@
 import { AnimatedSection } from "./AnimatedSection";
 import { motion } from "framer-motion";
 import { Code2, Heart, Target } from "lucide-react";
+import { useProfile } from "@/hooks/usePortfolioData";
 
 export const AboutSection = () => {
+  const { data: profile } = useProfile();
+  
   return (
     <section id="about" className="py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-medium/30 to-transparent" />
@@ -24,20 +27,30 @@ export const AboutSection = () => {
           <AnimatedSection delay={0.2}>
             <div className="relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden card-premium p-1">
-                <div className="w-full h-full rounded-[22px] bg-slate-medium flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center"
-                    >
-                      <span className="font-display text-5xl font-bold text-gradient-gold">HS</span>
-                    </motion.div>
-                    <p className="text-muted-foreground text-sm">
-                      Full Stack Developer<br />& Toastmaster
-                    </p>
+                {profile?.avatar_url ? (
+                  <div className="w-full h-full rounded-[22px] overflow-hidden bg-gradient-to-br from-slate-medium to-slate-dark">
+                    <img
+                      src={profile.avatar_url}
+                      alt="Hemavathi Saidhu"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="w-full h-full rounded-[22px] bg-slate-medium flex items-center justify-center">
+                    <div className="text-center p-8">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center"
+                      >
+                        <span className="font-display text-5xl font-bold text-gradient-gold">HS</span>
+                      </motion.div>
+                      <p className="text-muted-foreground text-sm">
+                        Full Stack Developer<br />& Toastmaster
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
               
               {/* Floating Elements */}
@@ -62,7 +75,7 @@ export const AboutSection = () => {
           <AnimatedSection delay={0.4}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm <span className="text-foreground font-medium">Hema Saidhu</span>, a B.Tech student 
+                I'm <span className="text-foreground font-medium">Hemavathi Saidhu</span>, a B.Tech student 
                 at KIET Group of Engineering & Technology with a deep passion for building exceptional 
                 digital experiences. My journey in tech began with curiosity and has evolved into a 
                 commitment to excellence.

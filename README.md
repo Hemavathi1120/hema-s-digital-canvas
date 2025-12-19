@@ -1,6 +1,6 @@
 # Hema's Digital Canvas
 
-A professional portfolio website created by **HEMAVATHI** from **Dream Team Services**.
+A professional portfolio website created by **Hemavathi Saidhu** from **Dream Team Services**.
 
 ## About
 
@@ -67,4 +67,4 @@ The built files will be in the `dist` folder.
 
 ## Author
 
-Created by **HEMAVATHI** - Dream Team Services
+Created by **Hemavathi Saidhu** - Dream Team Services

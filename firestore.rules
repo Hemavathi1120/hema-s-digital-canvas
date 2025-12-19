@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the resource
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/userRoles/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/userRoles/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // User Roles collection - only admins can read/write
+    match /userRoles/{roleId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Profiles collection
+    match /profiles/{profileId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Projects collection
+    match /projects/{projectId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Education collection
+    match /education/{educationId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Skills collection
+    match /skills/{skillId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Experiences collection (Leadership)
+    match /experiences/{experienceId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Achievements collection
+    match /achievements/{achievementId} {
+      allow read: if true; // Public read for portfolio display
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+  }
+}
