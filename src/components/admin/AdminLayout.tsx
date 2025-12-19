@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   LayoutDashboard,
   User,
@@ -153,11 +154,14 @@ export const AdminLayout = () => {
                 {navigation.find((item) => item.href === location.pathname)?.name || "Dashboard"}
               </h2>
               
-              <Link to="/" target="_blank">
-                <Button variant="outline" size="sm">
-                  View Site
-                </Button>
-              </Link>
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <Link to="/" target="_blank">
+                  <Button variant="outline" size="sm">
+                    View Site
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </header>

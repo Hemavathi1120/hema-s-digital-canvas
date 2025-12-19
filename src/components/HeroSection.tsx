@@ -7,18 +7,35 @@ export const HeroSection = () => {
   
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image - Dark Mode */}
+      <div className="absolute inset-0 z-0 dark:block hidden">
+        <img 
+          src="/images/hero-bg.svg" 
+          alt="" 
+          className="w-full h-full object-cover opacity-80"
+        />
+      </div>
+      
+      {/* Background Image - Light Mode */}
+      <div className="absolute inset-0 z-0 dark:hidden block">
+        <img 
+          src="/images/hero-bg-light.svg" 
+          alt="" 
+          className="w-full h-full object-cover opacity-70"
+        />
+      </div>
+      
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-hero-glow" />
-      <div className="absolute inset-0 dot-pattern opacity-[0.03]" />
+      <div className="absolute inset-0 bg-hero-glow opacity-30" />
       
       {/* Floating orbs */}
       <motion.div
-        animate={{ y: [-20, 20, -20], opacity: [0.3, 0.5, 0.3] }}
+        animate={{ y: [-20, 20, -20], opacity: [0.2, 0.35, 0.2] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-[100px]"
       />
       <motion.div
-        animate={{ y: [20, -20, 20], opacity: [0.2, 0.4, 0.2] }}
+        animate={{ y: [20, -20, 20], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-dark/10 rounded-full blur-[120px]"
       />

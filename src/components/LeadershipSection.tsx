@@ -100,20 +100,13 @@ export const LeadershipSection = () => {
 
               {/* Visual Element */}
               <div className="hidden md:flex items-center justify-center">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="relative w-64 h-64"
-                >
-                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/20" />
-                  <div className="absolute inset-4 rounded-full border-2 border-primary/30" />
-                  <div className="absolute inset-8 rounded-full border-2 border-dashed border-primary/20" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="font-display text-3xl font-bold text-gradient-gold">TM</span>
-                    </div>
-                  </div>
-                </motion.div>
+                <div className="relative w-64 h-64">
+                  <img 
+                    src="/logos/toastmasters-logo.png" 
+                    alt="Toastmasters International Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>

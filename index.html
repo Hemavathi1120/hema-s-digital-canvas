@@ -15,6 +15,17 @@
   </head>
 
   <body>
+    <script>
+      // Prevent flash of unstyled content
+      try {
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (_) {}
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

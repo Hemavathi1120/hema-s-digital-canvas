@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#e9ecef;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <linearGradient id="accent-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4C430;stop-opacity:0.08" />
+      <stop offset="50%" style="stop-color:#D4A044;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.06" />
+    </linearGradient>
+    
+    <pattern id="grid-light" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#D4A044" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+    
+    <pattern id="dots-light" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#F4C430" opacity="0.15"/>
+      <circle cx="20" cy="20" r="1" fill="#3b82f6" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base transparent background -->
+  <rect width="1920" height="1080" fill="transparent"/>
+  
+  <!-- Subtle gradient overlay -->
+  <rect width="1920" height="1080" fill="url(#bg-gradient-light)"/>
+  
+  <!-- Grid pattern -->
+  <rect width="1920" height="1080" fill="url(#grid-light)" opacity="0.6"/>
+  
+  <!-- Dot pattern -->
+  <rect width="1920" height="1080" fill="url(#dots-light)" opacity="0.5"/>
+  
+  <!-- Accent shapes -->
+  <g opacity="0.25">
+    <!-- Circles -->
+    <circle cx="300" cy="200" r="100" fill="none" stroke="#F4C430" stroke-width="2" opacity="0.4">
+      <animate attributeName="r" values="100;120;100" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="1650" cy="850" r="150" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.35">
+      <animate attributeName="r" values="150;170;150" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Hexagons -->
+    <polygon points="1600,200 1660,230 1660,290 1600,320 1540,290 1540,230" 
+             fill="none" stroke="#D4A044" stroke-width="2" opacity="0.4">
+      <animateTransform attributeName="transform" type="translate" 
+                        values="0,0; 0,-15; 0,0" dur="5s" repeatCount="indefinite"/>
+    </polygon>
+    
+    <polygon points="250,850 310,880 310,940 250,970 190,940 190,880" 
+             fill="none" stroke="#F4C430" stroke-width="2" opacity="0.35">
+      <animateTransform attributeName="transform" type="translate" 
+                        values="0,0; 0,15; 0,0" dur="7s" repeatCount="indefinite"/>
+    </polygon>
+    
+    <!-- Lines -->
+    <line x1="100" y1="540" x2="800" y2="540" stroke="#D4A044" stroke-width="1.5" opacity="0.3" stroke-dasharray="10,10">
+      <animate attributeName="stroke-dashoffset" values="0;20" dur="2s" repeatCount="indefinite"/>
+    </line>
+    
+    <line x1="1120" y1="300" x2="1820" y2="300" stroke="#3b82f6" stroke-width="1.5" opacity="0.3" stroke-dasharray="10,10">
+      <animate attributeName="stroke-dashoffset" values="0;-20" dur="2s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Accent gradient overlay -->
+  <rect width="1920" height="1080" fill="url(#accent-gradient-light)"/>
+</svg>

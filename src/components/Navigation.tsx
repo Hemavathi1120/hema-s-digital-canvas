@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -42,26 +43,32 @@ export const Navigation = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+          <div className="hidden md:flex items-center gap-4">
+            <ul className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
                   {link.name}
                 </a>
               </li>
             ))}
-          </ul>
+            </ul>
+            <ThemeToggle />
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="md:hidden p-2 text-foreground"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="p-2 text-foreground"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </motion.nav>
 

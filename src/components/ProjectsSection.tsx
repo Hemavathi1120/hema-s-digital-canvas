@@ -37,17 +37,42 @@ export const ProjectsSection = () => {
                 whileHover={{ y: -8 }}
                 className="group card-premium overflow-hidden h-full"
               >
-                {/* Project Header with Gradient */}
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-gold-dark/20 p-6 flex items-end">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-background/80 backdrop-blur-sm flex items-center justify-center">
-                      <Folder className="w-6 h-6 text-primary" />
+                {/* Project Image/Video */}
+                <div className="relative h-48 bg-gradient-to-br from-primary/20 to-gold-dark/20 overflow-hidden">
+                  {project.image_url ? (
+                    project.image_url.includes('.mp4') || project.image_url.includes('.webm') ? (
+                      <video
+                        src={project.image_url}
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={project.image_url}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    )
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Folder className="w-12 h-12 text-primary/50" />
                     </div>
-                    {project.is_featured && (
-                      <span className="px-3 py-1 bg-primary/20 backdrop-blur-sm text-primary text-xs font-medium rounded-full">
-                        Featured
-                      </span>
-                    )}
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/80 to-transparent">
+                    <div className="flex items-center gap-3">
+                      {project.is_featured && (
+                        <span className="px-3 py-1 bg-primary/90 backdrop-blur-sm text-white text-xs font-medium rounded-full">
+                          Featured
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
