@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { profilesService } from "@/integrations/firebase/services";
 import type { Profile } from "@/integrations/firebase/types";
 import { auth } from "@/integrations/firebase/config";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -270,6 +270,9 @@ export default function AdminProfile() {
                     src={imagePreview || profile.avatar_url}
                     alt="Profile"
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                   <button
                     onClick={removeImage}
@@ -349,16 +352,6 @@ export default function AdminProfile() {
               value={profile.linkedin_url || ""}
               onChange={(e) => updateField("linkedin_url", e.target.value)}
               placeholder="https://linkedin.com/in/yourusername"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="twitter_url">Twitter</Label>
-            <Input
-              id="twitter_url"
-              value={profile.twitter_url || ""}
-              onChange={(e) => updateField("twitter_url", e.target.value)}
-              placeholder="https://twitter.com/yourusername"
             />
           </div>
 

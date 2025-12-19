@@ -105,3 +105,38 @@ export interface SiteSetting {
   value: string;
   updatedAt: Date;
 }
+
+export interface ProjectQuestion {
+  id: string;
+  projectId: string;
+  projectTitle?: string;
+  name: string;
+  email: string;
+  question: string;
+  status: 'pending' | 'answered' | 'archived';
+  answer?: string;
+  createdAt: Date;
+  answeredAt?: Date;
+}
+
+export interface ProjectFeedback {
+  id: string;
+  projectId: string;
+  projectTitle?: string;
+  name: string;
+  email: string;
+  rating: number; // 1-5 stars
+  feedback: string;
+  status: 'pending' | 'reviewed' | 'archived';
+  createdAt: Date;
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  status: 'new' | 'read' | 'archived';
+  createdAt: Date;
+  repliedAt?: Date;
+}

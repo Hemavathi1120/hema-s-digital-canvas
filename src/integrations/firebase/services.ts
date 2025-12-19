@@ -20,6 +20,9 @@ import type {
   Experience,
   Skill,
   Achievement,
+  ProjectQuestion,
+  ProjectFeedback,
+  ContactMessage,
 } from './types';
 
 // Helper to get current user ID
@@ -196,4 +199,73 @@ export const profilesService = {
       await createDocument<Profile>('profiles', data as any);
     }
   },
+};
+
+export const projectQuestionsService = {
+  getAll: async (): Promise<ProjectQuestion[]> => {
+    return await getDocuments<ProjectQuestion>('project_questions', [
+      orderBy('createdAt', 'desc'),
+    ], false);
+  },
+  create: async (data: Omit<ProjectQuestion, 'id' | 'createdAt' | 'status'>): Promise<string> => {
+    const docData = {
+      ...data,
+      status: 'pending' as const,
+      createdAt: Timestamp.now(),
+    };
+    const docRef = await addDoc(collection(db, 'project_questions'), docData);
+    return docRef.id;
+  },
+  update: async (id: string, data: Partial<ProjectQuestion>): Promise<void> => {
+    const docRef = doc(db, 'project_questions', id);
+    await updateDoc(docRef, {
+      ...data,
+      ...(data.answer && { answeredAt: Timestamp.now() }),
+    });
+  },
+  delete: (id: string) => deleteDoc(doc(db, 'project_questions', id)),
+};
+
+export const projectFeedbackService = {
+  getAll: async (): Promise<ProjectFeedback[]> => {
+    return await getDocuments<ProjectFeedback>('project_feedback', [
+      orderBy('createdAt', 'desc'),
+    ], false);
+  },
+  create: async (data: Omit<ProjectFeedback, 'id' | 'createdAt' | 'status'>): Promise<string> => {
+    const docData = {
+      ...data,
+      status: 'pending' as const,
+      createdAt: Timestamp.now(),
+    };
+    const docRef = await addDoc(collection(db, 'project_feedback'), docData);
+    return docRef.id;
+  },
+  update: async (id: string, data: Partial<ProjectFeedback>): Promise<void> => {
+    const docRef = doc(db, 'project_feedback', id);
+    await updateDoc(docRef, data);
+  },
+  delete: (id: string) => deleteDoc(doc(db, 'project_feedback', id)),
+};
+
+export const contactMessagesService = {
+  getAll: async (): Promise<ContactMessage[]> => {
+    return await getDocuments<ContactMessage>('contact_messages', [
+      orderBy('createdAt', 'desc'),
+    ], false);
+  },
+  create: async (data: Omit<ContactMessage, 'id' | 'createdAt' | 'status'>): Promise<string> => {
+    const docData = {
+      ...data,
+      status: 'new' as const,
+      createdAt: Timestamp.now(),
+    };
+    const docRef = await addDoc(collection(db, 'contact_messages'), docData);
+    return docRef.id;
+  },
+  update: async (id: string, data: Partial<ContactMessage>): Promise<void> => {
+    const docRef = doc(db, 'contact_messages', id);
+    await updateDoc(docRef, data);
+  },
+  delete: (id: string) => deleteDoc(doc(db, 'contact_messages', id)),
 };

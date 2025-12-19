@@ -33,6 +33,9 @@ export const AboutSection = () => {
                       src={profile.avatar_url}
                       alt="Hemavathi Saidhu"
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="high"
                     />
                   </div>
                 ) : (
@@ -86,12 +89,6 @@ export const AboutSection = () => {
                 of KIET Toastmasters Club</span>, where I blend my technical skills with leadership 
                 and communication expertise. This unique combination allows me to approach problems 
                 with both analytical precision and human-centered thinking.
-              </p>
-
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Based in the serene landscapes of Andhra Pradesh, I draw inspiration from the 
-                intersection of tradition and innovation, crafting solutions that are both elegant 
-                and impactful.
               </p>
 
               {/* Stats */}

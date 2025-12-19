@@ -16,6 +16,8 @@ import AdminEducation from "./pages/admin/AdminEducation";
 import AdminSkills from "./pages/admin/AdminSkills";
 import AdminLeadership from "./pages/admin/AdminLeadership";
 import AdminAchievements from "./pages/admin/AdminAchievements";
+import AdminQuestions from "./pages/admin/AdminQuestions";
+import AdminConnections from "./pages/admin/AdminConnections";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,8 @@ const App = () => (
             <Route path="skills" element={<AdminSkills />} />
             <Route path="leadership" element={<AdminLeadership />} />
             <Route path="achievements" element={<AdminAchievements />} />
+            <Route path="questions" element={<AdminQuestions />} />
+            <Route path="connections" element={<AdminConnections />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

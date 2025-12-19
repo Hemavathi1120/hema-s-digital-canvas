@@ -13,6 +13,9 @@ export const HeroSection = () => {
           src="/images/hero-bg.svg" 
           alt="" 
           className="w-full h-full object-cover opacity-80"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
       
@@ -22,6 +25,9 @@ export const HeroSection = () => {
           src="/images/hero-bg-light.svg" 
           alt="" 
           className="w-full h-full object-cover opacity-70"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
       
@@ -66,6 +72,9 @@ export const HeroSection = () => {
                 src={profile.avatar_url}
                 alt="Hemavathi Saidhu"
                 className="relative w-full h-full rounded-full object-cover border-4 border-background shadow-2xl"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
           </motion.div>

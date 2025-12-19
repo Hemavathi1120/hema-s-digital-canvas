@@ -75,26 +75,21 @@ export const LeadershipSection = () => {
                   </div>
                   <div>
                     <h3 className="font-display text-2xl font-bold text-foreground">KIET Toastmasters Club</h3>
-                    <p className="text-primary text-sm font-medium">Secretary</p>
                   </div>
                 </div>
                 
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  As Secretary of KIET Toastmasters Club, I manage club communications, 
-                  maintain records, coordinate meetings, and ensure smooth operations. 
-                  This role has significantly enhanced my organizational and communication abilities.
+                  As a member of KIET Toastmasters Club, I am actively pursuing the Dynamic Leadership pathway, 
+                  developing essential skills in public speaking, team collaboration, and strategic leadership. 
+                  Through this pathway, I manage club communications, coordinate meetings, and lead initiatives 
+                  that foster a collaborative environment. This journey has significantly enhanced my 
+                  organizational abilities, communication effectiveness, and capacity to inspire and guide teams 
+                  toward achieving collective goals.
                 </p>
 
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
-                    <span className="text-sm text-muted-foreground">Since April 2025</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="w-4 h-4 text-primary fill-primary" />
-                    ))}
-                  </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary" />
+                  <span className="text-sm text-muted-foreground">Since April 2025</span>
                 </div>
               </div>
 
@@ -105,6 +100,9 @@ export const LeadershipSection = () => {
                     src="/logos/toastmasters-logo.png" 
                     alt="Toastmasters International Logo"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                 </div>
               </div>

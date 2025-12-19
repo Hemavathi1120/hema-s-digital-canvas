@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { projectsService } from "@/integrations/firebase/services";
 import { auth } from "@/integrations/firebase/config";
 import { Project } from "@/integrations/firebase/types";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { Badge } from "@/components/ui/badge";
+import { Badge, type BadgeProps } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,

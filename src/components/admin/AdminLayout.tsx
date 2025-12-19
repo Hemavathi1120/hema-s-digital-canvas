@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "@/integrations/firebase/config";
 import { signOut } from "firebase/auth";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -16,6 +16,8 @@ import {
   LogOut,
   Menu,
   X,
+  MessageSquare,
+  Mail,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -27,6 +29,8 @@ const navigation = [
   { name: "Skills", href: "/admin/skills", icon: Code },
   { name: "Leadership", href: "/admin/leadership", icon: Award },
   { name: "Achievements", href: "/admin/achievements", icon: TrendingUp },
+  { name: "Questions", href: "/admin/questions", icon: MessageSquare },
+  { name: "Connections", href: "/admin/connections", icon: Mail },
 ];
 
 export const AdminLayout = () => {

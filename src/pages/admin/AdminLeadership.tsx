@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { experiencesService } from "@/integrations/firebase/services";
 import { auth } from "@/integrations/firebase/config";
 import { Experience } from "@/integrations/firebase/types";
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
