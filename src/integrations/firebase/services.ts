@@ -88,7 +88,7 @@ export const getDocuments = async <T>(
   requireAuth: boolean = false
 ): Promise<T[]> => {
   const userId = getCurrentUserId();
-  
+
   // If auth is not required, fetch all documents with constraints
   if (!requireAuth || !userId) {
     const collectionRef = collection(db, collectionName);

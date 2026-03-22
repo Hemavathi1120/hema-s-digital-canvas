@@ -13,14 +13,14 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await contactMessagesService.create({
         name: formData.name,
         email: formData.email,
         message: formData.message,
       });
-      
+
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -38,9 +38,9 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative">
+    <section id="contact" className="py-10 md:py-16 lg:py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-t from-slate-medium/50 to-transparent" />
-      
+
       <div className="section-container relative">
         <AnimatedSection>
           <div className="text-center mb-16">
@@ -49,24 +49,24 @@ export const ContactSection = () => {
               <span className="text-sm font-medium text-primary uppercase tracking-widest">Contact</span>
               <div className="line-accent rotate-180" />
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
               Let's <span className="text-gradient-gold">Connect</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or just want to say hello? I'd love to hear from you.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <AnimatedSection delay={0.2}>
             <div className="space-y-8">
-              <div className="card-premium p-8">
+              <div className="card-premium p-5 md:p-6 lg:p-8">
                 <h3 className="font-display text-xl font-bold text-foreground mb-6">
                   Get in Touch
                 </h3>
-                
+
                 <div className="space-y-6">
                   <a
                     href="mailto:saidhuhema11@gmail.com"
@@ -94,7 +94,7 @@ export const ContactSection = () => {
               </div>
 
               {/* Social Links */}
-              <div className="card-premium p-8">
+              <div className="card-premium p-5 md:p-6 lg:p-8">
                 <h4 className="font-display text-lg font-bold text-foreground mb-6">
                   Follow Me
                 </h4>
@@ -128,7 +128,7 @@ export const ContactSection = () => {
 
           {/* Contact Form */}
           <AnimatedSection delay={0.4}>
-            <form onSubmit={handleSubmit} className="card-premium p-8">
+            <form onSubmit={handleSubmit} className="card-premium p-5 md:p-6 lg:p-8">
               <h3 className="font-display text-xl font-bold text-foreground mb-6">
                 Send a Message
               </h3>

@@ -16,6 +16,7 @@ export default function AdminProfile() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [resumePreview, setResumePreview] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -26,6 +27,9 @@ export default function AdminProfile() {
     try {
       const data = await profilesService.getCurrent();
       setProfile(data || {});
+      if (data?.resume_url) {
+        setResumePreview(data.resume_url);
+      }
     } catch (error: any) {
       toast({
         title: "Error",
@@ -89,7 +93,7 @@ export default function AdminProfile() {
 
     setUploading(true);
     console.log('Starting upload to Cloudinary...', { fileName: file.name, fileSize: file.size });
-    
+
     try {
       // Upload to Cloudinary
       const formData = new FormData();
@@ -122,20 +126,20 @@ export default function AdminProfile() {
         title: "Success",
         description: "Image uploaded successfully!",
       });
-      
+
       // Reset file input
       event.target.value = '';
     } catch (error: any) {
       console.error('Upload error:', error);
-      
+
       let errorMessage = error.message || 'Failed to upload image';
-      
+
       toast({
         title: "Upload Failed",
         description: errorMessage,
         variant: "destructive",
       });
-      
+
       // Reset file input
       event.target.value = '';
     } finally {
@@ -147,6 +151,88 @@ export default function AdminProfile() {
   const removeImage = () => {
     setProfile({ ...profile, avatar_url: "" });
     setImagePreview(null);
+  };
+
+  const handleResumeUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Error",
+        description: "Please select an image file",
+        variant: "destructive",
+      });
+      event.target.value = '';
+      return;
+    }
+
+    // Check file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: "Error",
+        description: "Image size should be less than 5MB",
+        variant: "destructive",
+      });
+      event.target.value = '';
+      return;
+    }
+
+    setUploading(true);
+    console.log('Starting resume image upload...', { fileName: file.name, fileSize: file.size });
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'portfolio');
+      formData.append('folder', 'portfolio/resumes');
+
+      console.log('Uploading resume image to Cloudinary...');
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/dobktsnix/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || 'Resume upload failed');
+      }
+
+      const data = await response.json();
+      console.log('Resume image upload complete:', data.secure_url);
+
+      setProfile({ ...profile, resume_url: data.secure_url });
+      setResumePreview(data.secure_url);
+
+      toast({
+        title: "Success",
+        description: "Resume image uploaded successfully!",
+      });
+
+      event.target.value = '';
+    } catch (error: any) {
+      console.error('Resume upload error:', error);
+      let errorMessage = error.message || 'Failed to upload resume image';
+
+      toast({
+        title: "Upload Failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
+
+      event.target.value = '';
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeResumeImage = () => {
+    setProfile({ ...profile, resume_url: "" });
+    setResumePreview(null);
   };
 
   if (loading) {
@@ -262,7 +348,7 @@ export default function AdminProfile() {
             </div>
             <div className="space-y-2">
               <Label>Profile Picture</Label>
-              
+
               {/* Image Preview */}
               {(imagePreview || profile.avatar_url) && (
                 <div className="relative w-32 h-32 rounded-lg overflow-hidden border-2 border-border">
@@ -313,7 +399,7 @@ export default function AdminProfile() {
                   className="hidden"
                 />
               </div>
-              
+
               {/* Or Manual URL Input */}
               <div className="space-y-2">
                 <Label htmlFor="avatar_url" className="text-sm text-muted-foreground">Or paste image URL</Label>
@@ -356,13 +442,58 @@ export default function AdminProfile() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="resume_url">Resume URL</Label>
-            <Input
-              id="resume_url"
-              value={profile.resume_url || ""}
-              onChange={(e) => updateField("resume_url", e.target.value)}
-              placeholder="https://..."
-            />
+            <Label htmlFor="resume_url">Resume Image</Label>
+            <div className="space-y-4">
+              {/* Resume Preview */}
+              {(resumePreview || profile.resume_url) && (
+                <div className="relative w-40 h-56 rounded-lg overflow-hidden border-2 border-border">
+                  <img
+                    src={resumePreview || profile.resume_url}
+                    alt="Resume"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
+                  <button
+                    onClick={removeResumeImage}
+                    className="absolute top-1 right-1 p-1 bg-destructive text-destructive-foreground rounded-full hover:bg-destructive/90 transition-colors"
+                    type="button"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+
+              {/* Upload Button */}
+              <Button
+                type="button"
+                variant="outline"
+                disabled={uploading}
+                className="gap-2"
+                onClick={() => document.getElementById('resume-upload')?.click()}
+              >
+                {uploading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-4 h-4" />
+                    {profile.resume_url ? 'Update Resume Image' : 'Upload Resume Image'}
+                  </>
+                )}
+              </Button>
+              <Input
+                id="resume-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleResumeUpload}
+                className="hidden"
+              />
+              <p className="text-sm text-muted-foreground">Upload a clear image of your resume (JPG, PNG, etc.)</p>
+            </div>
           </div>
         </CardContent>
       </Card>

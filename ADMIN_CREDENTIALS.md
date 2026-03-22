@@ -2,7 +2,7 @@
 
 ## Admin Credentials
 
-**Email:** `saidhuhema11@gmail.com`  
+**Email:** `saidhuhema11@gmail.com`
 **Password:** `1234567890`
 
 ## Setup Instructions
@@ -104,19 +104,19 @@ service cloud.firestore {
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
     function isAdmin() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
         exists(/databases/$(database)/documents/userRoles/$(request.auth.uid)) &&
         get(/databases/$(database)/documents/userRoles/$(request.auth.uid)).data.role == 'admin';
     }
-    
+
     // User Roles
     match /userRoles/{roleId} {
       allow read: if isAuthenticated();
       allow write: if isAdmin();
     }
-    
+
     // All other collections
     match /{document=**} {
       allow read: if true;

@@ -1,10 +1,10 @@
 # Admin Dashboard Not Available - Troubleshooting Guide
 
 ## Current Status
-✅ Admin user exists and is authenticated  
-✅ Admin role is properly set in userRoles collection  
-✅ User ID: TMcSz2E4JxcSHK38FFsyMk7CjV33  
-✅ Email: saidhuhema11@gmail.com  
+✅ Admin user exists and is authenticated
+✅ Admin role is properly set in userRoles collection
+✅ User ID: TMcSz2E4JxcSHK38FFsyMk7CjV33
+✅ Email: saidhuhema11@gmail.com
 
 ## Possible Issues & Solutions
 

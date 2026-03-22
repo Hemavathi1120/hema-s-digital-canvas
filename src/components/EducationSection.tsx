@@ -31,14 +31,14 @@ const educationData = [
 
 export const EducationSection = () => {
   return (
-    <section id="education" className="py-32 relative">
+    <section id="education" className="py-10 md:py-16 lg:py-20 relative">
       <div className="section-container">
         <AnimatedSection>
           <div className="flex items-center gap-4 mb-4">
             <div className="line-accent" />
             <span className="text-sm font-medium text-primary uppercase tracking-widest">Education</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-16">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-12 md:mb-16">
             Academic <span className="text-gradient-gold">Journey</span>
           </h2>
         </AnimatedSection>
@@ -48,7 +48,7 @@ export const EducationSection = () => {
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-border to-border" />
 
           {/* Timeline Items */}
-          <div className="space-y-16">
+          <div className="space-y-8 md:space-y-12 lg:space-y-16">
             {educationData.map((item, index) => (
               <AnimatedSection key={index} delay={index * 0.2}>
                 <div className={`relative flex flex-col md:flex-row gap-8 ${
@@ -58,7 +58,7 @@ export const EducationSection = () => {
                   <div className={`flex-1 ${index % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
                     <motion.div
                       whileHover={{ y: -4 }}
-                      className="card-premium p-8 ml-16 md:ml-0"
+                      className="card-premium p-5 md:p-6 lg:p-8 ml-16 md:ml-0"
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <Calendar className="w-4 h-4 text-primary" />

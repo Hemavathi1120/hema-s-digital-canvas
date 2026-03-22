@@ -1,11 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { 
-  profilesService, 
-  projectsService, 
-  educationService, 
-  skillsService, 
-  experiencesService, 
-  achievementsService 
+import {
+  profilesService,
+  projectsService,
+  educationService,
+  skillsService,
+  experiencesService,
+  achievementsService
 } from "@/integrations/firebase/services";
 
 // Profile hooks

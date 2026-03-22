@@ -2,7 +2,7 @@
 
 ## Your Supabase Project Details
 
-**Project URL:** https://qeivnosekixlkyikyymo.supabase.co  
+**Project URL:** https://qeivnosekixlkyikyymo.supabase.co
 **Project ID:** qeivnosekixlkyikyymo
 
 ---

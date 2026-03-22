@@ -129,7 +129,7 @@ export default function AdminProjects() {
     // Check if file is image or video
     const isImage = file.type.startsWith('image/');
     const isVideo = file.type.startsWith('video/');
-    
+
     if (!isImage && !isVideo) {
       toast({
         title: "Error",
@@ -154,11 +154,11 @@ export default function AdminProjects() {
 
     setUploading(true);
     console.log('Starting media upload to Cloudinary...', { fileName: file.name, fileSize: file.size, type: file.type });
-    
+
     try {
       // Determine upload endpoint based on file type
       const uploadEndpoint = isVideo ? 'video/upload' : 'image/upload';
-      
+
       // Upload to Cloudinary
       const formData = new FormData();
       formData.append('file', file);
@@ -188,20 +188,20 @@ export default function AdminProjects() {
         title: "Success",
         description: "Image uploaded successfully!",
       });
-      
+
       // Reset file input
       event.target.value = '';
     } catch (error: any) {
       console.error('Upload error:', error);
-      
+
       let errorMessage = error.message || 'Failed to upload image';
-      
+
       toast({
         title: "Upload Failed",
         description: errorMessage,
         variant: "destructive",
       });
-      
+
       // Reset file input
       event.target.value = '';
     } finally {
@@ -323,7 +323,7 @@ export default function AdminProjects() {
 
                 <div className="space-y-2">
                   <Label>Project Image</Label>
-                  
+
                   {editingProject.image_url && (
                     <div className="relative w-full h-48 rounded-lg overflow-hidden border-2 border-border">
                       <img

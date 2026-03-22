@@ -225,68 +225,68 @@ service cloud.firestore {
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
     // Helper function to check if user is admin
     function isAdmin() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
         exists(/databases/$(database)/documents/userRoles/$(request.auth.uid)) &&
         get(/databases/$(database)/documents/userRoles/$(request.auth.uid)).data.role == 'admin';
     }
-    
+
     // Helper function to check if user owns the document
     function isOwner() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
         request.auth.uid == resource.data.userId;
     }
-    
+
     // User Roles - only admins can write
     match /userRoles/{document} {
       allow read: if isAuthenticated();
       allow write: if isAdmin();
     }
-    
+
     // Profiles - users can only access their own
     match /profiles/{document} {
       allow read: if true; // Public read for portfolio display
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Projects - users can only manage their own
     match /projects/{document} {
       allow read: if true; // Public read
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Education
     match /education/{document} {
       allow read: if true;
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Experiences
     match /experiences/{document} {
       allow read: if true;
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Skills
     match /skills/{document} {
       allow read: if true;
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Achievements
     match /achievements/{document} {
       allow read: if true;
       allow create: if isAuthenticated();
       allow update, delete: if isOwner() || isAdmin();
     }
-    
+
     // Site Settings - only admins
     match /siteSettings/{document} {
       allow read: if true;

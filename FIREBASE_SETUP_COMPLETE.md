@@ -21,13 +21,13 @@ Your admin login credentials ARE CORRECT, but Firebase security rules are blocki
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // User Roles - allow authenticated reads
     match /userRoles/{roleId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null;
     }
-    
+
     // All other collections - public read, authenticated write
     match /{document=**} {
       allow read: if true;
@@ -58,7 +58,7 @@ service firebase.storage {
                    && request.resource.size < 5 * 1024 * 1024
                    && request.resource.contentType.matches('image/.*');
     }
-    
+
     // Project images
     match /projects/{userId}/{fileName} {
       allow read: if true;

@@ -36,9 +36,9 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
         where("userId", "==", userId),
         where("role", "==", "admin")
       );
-      
+
       const querySnapshot = await getDocs(q);
-      
+
       if (querySnapshot.empty) {
         console.log('No admin role found');
         setIsAdmin(false);
@@ -49,11 +49,11 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     } catch (error: any) {
       console.error("Error checking admin:", error);
       console.error("Error code:", error.code);
-      
+
       if (error.code === 'permission-denied') {
         console.error('⚠️  Firestore permission denied! Configure security rules in Firebase Console.');
       }
-      
+
       setIsAdmin(false);
     } finally {
       setLoading(false);

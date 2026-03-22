@@ -103,18 +103,18 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-32 relative">
+    <section id="projects" className="py-10 md:py-16 lg:py-20 relative">
       <div className="section-container">
         <AnimatedSection>
           <div className="flex items-center gap-4 mb-4">
             <div className="line-accent" />
             <span className="text-sm font-medium text-primary uppercase tracking-widest">Projects</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
             Featured <span className="text-gradient-gold">Work</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mb-16">
-            A collection of projects that demonstrate my expertise in full-stack development 
+          <p className="text-base sm:text-lg md:text-lg text-muted-foreground max-w-2xl mb-8 md:mb-12 lg:mb-16">
+            A collection of projects that demonstrate my expertise in full-stack development
             and passion for creating impactful digital solutions.
           </p>
         </AnimatedSection>
@@ -126,7 +126,7 @@ export const ProjectsSection = () => {
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
             {projects.map((project, index) => (
             <AnimatedSection key={project.id} delay={index * 0.15}>
               <motion.div
@@ -253,7 +253,7 @@ export const ProjectsSection = () => {
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold">{selectedProject?.title}</DialogTitle>
             </DialogHeader>
-            
+
             <div className="space-y-6">
               {/* Project Image */}
               {selectedProject?.image_url && (

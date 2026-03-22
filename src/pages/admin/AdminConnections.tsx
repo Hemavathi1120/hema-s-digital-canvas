@@ -238,7 +238,7 @@ export default function AdminConnections() {
               </div>
               <div>
                 <h4 className="text-sm font-medium text-muted-foreground mb-1">Email</h4>
-                <a 
+                <a
                   href={`mailto:${selectedMessage?.email}`}
                   className="text-primary hover:underline"
                 >

@@ -29,7 +29,7 @@ service firebase.storage {
                    && request.resource.size < 5 * 1024 * 1024
                    && request.resource.contentType.matches('image/.*');
     }
-    
+
     // Allow authenticated users to upload project images
     match /projects/{userId}/{fileName} {
       allow read: if true;

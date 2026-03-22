@@ -183,7 +183,7 @@
   }
 
   .section-container {
-    @apply container mx-auto px-6 md:px-8 lg:px-12;
+    @apply container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12;
   }
 
   .hover-lift {
@@ -202,6 +202,102 @@
   .dot-pattern {
     background-image: radial-gradient(hsl(var(--muted)) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  /* Admin Dashboard Utilities */
+  .admin-surface {
+    background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background) / 0.98), hsl(var(--background) / 0.95));
+  }
+
+  .admin-sidebar {
+    background: linear-gradient(to bottom, hsl(var(--card)), hsl(var(--card) / 0.95));
+  }
+
+  .admin-card {
+    @apply rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm transition-all duration-300;
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%);
+  }
+
+  .admin-card-hover {
+    @apply hover:border-primary/50 hover:bg-card/80 hover:shadow-lg;
+  }
+
+  .admin-nav-item {
+    @apply relative transition-all duration-200;
+  }
+
+  .admin-nav-active {
+    @apply bg-primary/15 text-primary;
+  }
+
+  .admin-kpi {
+    @apply rounded-xl border border-border/40 bg-gradient-to-br from-card to-background backdrop-blur-sm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .admin-kpi::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .admin-kpi:hover::before {
+    opacity: 1;
+  }
+
+  .admin-kpi-icon {
+    @apply rounded-lg transition-all duration-300;
+  }
+
+  .admin-action-card {
+    @apply rounded-xl border border-border/40 transition-all duration-300;
+    background: linear-gradient(145deg, hsl(var(--background) / 0.5) 0%, transparent 100%);
+  }
+
+  .admin-action-card:hover {
+    @apply border-primary/50 shadow-md;
+  }
+
+  .admin-timeline-item {
+    @apply relative;
+  }
+
+  .admin-timeline-item .admin-timeline-dot {
+    @apply absolute left-0 top-1.5 w-5 h-5 rounded-full border-2 border-primary/40 bg-background transition-all duration-300;
+  }
+
+  .admin-timeline-item:first-child .admin-timeline-dot {
+    @apply border-primary bg-primary/20;
+  }
+
+  .admin-timeline-item:first-child .admin-timeline-dot::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .admin-hero {
+    @apply space-y-2;
+  }
+
+  .admin-hero h1 {
+    @apply text-foreground;
+    background: linear-gradient(to right, hsl(var(--foreground)), hsl(var(--primary)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .admin-cta-section {
+    @apply rounded-2xl border border-border/40;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--gold-dark) / 0.05) 100%);
   }
 }
 
@@ -250,17 +346,17 @@ img, video, picture {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: high-quality;
-  
+
   /* Prevent image degradation */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  
+
   /* Anti-aliasing for sharp images */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   /* Ensure maximum quality */
   max-width: 100%;
   height: auto;

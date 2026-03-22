@@ -93,7 +93,7 @@ export default function AdminAchievements() {
     }
 
     setUploading(true);
-    
+
     try {
       const formData = new FormData();
       formData.append('file', file);
@@ -191,7 +191,7 @@ export default function AdminAchievements() {
 
               <div className="space-y-2">
                 <Label>Achievement Image</Label>
-                
+
                 {editing.image_url && (
                   <div className="relative w-full h-32 rounded-lg overflow-hidden border-2 border-border">
                     <img

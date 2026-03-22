@@ -36,7 +36,7 @@ export const AdminLogin = () => {
         where("userId", "==", user.uid),
         where("role", "==", "admin")
       );
-      
+
       console.log('Checking admin role...');
       const querySnapshot = await getDocs(q);
 
@@ -55,9 +55,9 @@ export const AdminLogin = () => {
     } catch (error: any) {
       console.error('Login error:', error);
       console.error('Error code:', error.code);
-      
+
       let errorMessage = error.message;
-      
+
       if (error.code === 'permission-denied') {
         errorMessage = 'Firestore permission denied. Please configure Firestore security rules in Firebase Console.';
       } else if (error.code === 'auth/wrong-password') {
@@ -67,7 +67,7 @@ export const AdminLogin = () => {
       } else if (error.code === 'auth/invalid-credential') {
         errorMessage = 'Invalid email or password';
       }
-      
+
       toast({
         title: "Login Failed",
         description: errorMessage,
@@ -81,7 +81,7 @@ export const AdminLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-      
+
       <Card className="w-full max-w-md relative z-10 border-primary/20 bg-background/95 backdrop-blur">
         <CardHeader className="space-y-2">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center mb-4 mx-auto">
